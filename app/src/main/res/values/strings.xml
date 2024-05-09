@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TaskZen</string>
+    <string name="task">Tasks</string>
 </resources>
