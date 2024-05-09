@@ -1,9 +1,9 @@
 package com.example.taskzen.Model
 
 class ToDoModel {
-    private var id: Int = 0
-    private var status: Int = 0
-    private var task: String = ""
+    var id: Int = 0
+    var status: Int = 0
+    var task: String = ""
 
     fun getId(): Int {
         return id
