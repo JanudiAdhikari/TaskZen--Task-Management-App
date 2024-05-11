@@ -1,6 +1,5 @@
 package com.example.taskzen
 
-import android.app.Activity
 import android.content.DialogInterface
 import android.graphics.Color
 import android.os.Bundle
