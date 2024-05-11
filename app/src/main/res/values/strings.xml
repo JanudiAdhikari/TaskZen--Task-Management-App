@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">TaskZen</string>
     <string name="task">Tasks</string>
+    <string name="add_task_button_description">Add Tasks</string>
 </resources>
