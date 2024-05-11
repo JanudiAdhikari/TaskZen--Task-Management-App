@@ -72,6 +72,14 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, NAME, null, 
         db?.update(TODO_TABLE, cv, "$ID=?", arrayOf(id.toString()))
     }
 
+    fun updateTask(id: Int, newTask: String) {
+        val cv = ContentValues().apply {
+            put(TASK, newTask)
+        }
+        db?.update(TODO_TABLE, cv, "$ID=?", arrayOf(id.toString()))
+    }
+
+
     fun deleteTask(id: Int) {
         db?.delete(TODO_TABLE, "$ID=?", arrayOf(id.toString()))
     }

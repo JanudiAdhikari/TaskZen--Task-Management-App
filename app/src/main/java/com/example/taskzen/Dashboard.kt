@@ -1,16 +1,23 @@
 package com.example.taskzen
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taskzen.Adapter.ToDoAdapter
 import com.example.taskzen.Model.ToDoModel
+import com.example.taskzen.Utils.DatabaseHandler
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.util.Collections
 
-class Dashboard : AppCompatActivity() {
+class Dashboard : AppCompatActivity(), DialogCloseListener {
 
     private lateinit var taskRV: RecyclerView
     private lateinit var tasksAdapter: ToDoAdapter
+    private lateinit var db: DatabaseHandler
+    private lateinit var fab: FloatingActionButton
 
     private lateinit var taskList: MutableList<ToDoModel>
 
@@ -18,29 +25,35 @@ class Dashboard : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
 
-        //supportActionBar?.hide()
+        db = DatabaseHandler(this)
+        db.openDatabase()
 
         taskList = mutableListOf()
 
         taskRV = findViewById(R.id.taskRV)
         taskRV.layoutManager = LinearLayoutManager(this)
 
-        tasksAdapter = ToDoAdapter(this) // Remove the second argument
+        tasksAdapter = ToDoAdapter(this, db) // Remove the second argument
         taskRV.adapter = tasksAdapter
 
-        //to add dummy data
-        // To add dummy data
-        val task = ToDoModel()
-        task.setTask("This is a test task")
-        task.setStatus(0)
-        task.setId(1)
+        fab = findViewById(R.id.fBtn)
 
-        taskList.add(task)
-        taskList.add(task)
-        taskList.add(task)
-        taskList.add(task)
-        taskList.add(task)
+        val itemTouchHelper = ItemTouchHelper(RecyclerItemTouchHelper(this, tasksAdapter))
+        itemTouchHelper.attachToRecyclerView(taskRV)
 
-        tasksAdapter.setTasks(taskList) // Use setTasks method to update the list in the adapter
+        taskList = db.getAllTasks().toMutableList()
+        taskList.reverse()
+        tasksAdapter.setTasks(taskList)
+
+        fab.setOnClickListener {
+            AddNewTask.newInstance().show(supportFragmentManager, AddNewTask.TAG)
+        }
+    }
+
+    override fun handleDialogClose(dialog: DialogInterface) {
+        taskList = db.getAllTasks().toMutableList()
+        taskList.reverse()
+        tasksAdapter.setTasks(taskList)
+        tasksAdapter.notifyDataSetChanged()
     }
 }
