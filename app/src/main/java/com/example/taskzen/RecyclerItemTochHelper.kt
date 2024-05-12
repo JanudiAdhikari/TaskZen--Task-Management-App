@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taskzen.Adapter.ToDoAdapter
 import android.content.Context
+import android.widget.Toast
 
 
 class RecyclerItemTouchHelper(private val context: Context, private val adapter: ToDoAdapter) : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
@@ -25,6 +26,7 @@ class RecyclerItemTouchHelper(private val context: Context, private val adapter:
             builder.setMessage("Are You Sure?")
             builder.setPositiveButton("Confirm") { dialog, which ->
                 adapter.deleteItem(position)
+                showToast("Task Deleted")
             }
             builder.setNegativeButton(android.R.string.cancel) { dialog, which ->
                 adapter.notifyItemChanged(viewHolder.adapterPosition)
@@ -77,5 +79,9 @@ class RecyclerItemTouchHelper(private val context: Context, private val adapter:
 
         background.draw(c)
         icon.draw(c)
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 }

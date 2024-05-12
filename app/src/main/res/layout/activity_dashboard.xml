@@ -34,15 +34,27 @@
             android:textStyle="bold|italic"
             android:paddingTop="10dp"/>
 
-        <SearchView
-            android:id="@+id/taskSearch"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_weight="1"
-            android:background="@drawable/searchview_background"
-            android:queryHint="Search Tasks"
-            android:textColorHint="@color/black"
-            android:layout_marginTop="7dp"/>
+<!--        <TextView-->
+<!--            android:id="@+id/taskSearch"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:hint="Search Tasks"-->
+<!--            android:textColorHint="@android:color/darker_gray"-->
+<!--            android:padding="5dp"-->
+<!--            android:drawableStart="@drawable/ic_search_custom"-->
+<!--            android:drawablePadding="8dp"-->
+<!--            android:background="@drawable/searchview_background"/>-->
+
+        <!--        <SearchView-->
+<!--            android:id="@+id/taskSearch"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="45dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@drawable/searchview_background"-->
+<!--            android:queryHint="Search Tasks"-->
+<!--            android:textColorHint="@color/black"-->
+<!--            android:layout_marginTop="7dp"/>-->
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
