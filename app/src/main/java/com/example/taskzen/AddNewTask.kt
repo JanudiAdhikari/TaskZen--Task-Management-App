@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.example.taskzen.Model.ToDoModel
 import com.example.taskzen.Utils.DatabaseHandler
@@ -58,7 +59,7 @@ class AddNewTask : BottomSheetDialogFragment() {
             val task = bundle.getString("task", "")
             newTaskText.setText(task)
             if (task.isNotEmpty()) {
-                newTaskSaveButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.primaryDark))
+                newTaskSaveButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.darkblue))
             }
         }
 
@@ -71,7 +72,7 @@ class AddNewTask : BottomSheetDialogFragment() {
                     newTaskSaveButton.setTextColor(Color.GRAY)
                 } else {
                     newTaskSaveButton.isEnabled = true
-                    newTaskSaveButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.primaryDark))
+                    newTaskSaveButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.darkblue))
                 }
             }
 
@@ -82,11 +83,13 @@ class AddNewTask : BottomSheetDialogFragment() {
             val text = newTaskText.text.toString()
             if (isUpdate) {
                 db.updateTask(taskId, text)
+                showToast("Task Updated")
             } else {
                 val task = ToDoModel()
                 task.task = text
                 task.status = 0
                 db.insertTask(task)
+                showToast("Task Added")
             }
             dismiss()
         }
@@ -98,5 +101,9 @@ class AddNewTask : BottomSheetDialogFragment() {
         if (activity is DialogCloseListener) {
             activity.handleDialogClose(dialog)
         }
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 }

@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Dashboard">
+    tools:context=".Dashboard"
+    android:background="@color/white">
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="65dp"
+        android:layout_height="78dp"
         android:background="@drawable/header_background"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="12dp">
 
         <ImageView
             android:id="@+id/iconDashboard"
@@ -24,23 +25,24 @@
         <TextView
             android:id="@+id/task"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="30dp"
             android:fontFamily="sans-serif"
             android:text="@string/task"
             android:textColor="@color/white"
             android:textSize="28sp"
             android:textStyle="bold|italic"
-            android:paddingTop="2dp"/>
+            android:paddingTop="10dp"/>
 
         <SearchView
             android:id="@+id/taskSearch"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/searchview_background"
             android:queryHint="Search Tasks"
-            android:textColorHint="@color/black" />
+            android:textColorHint="@color/black"
+            android:layout_marginTop="7dp"/>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -62,8 +64,8 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
-        android:backgroundTint="@color/black"
-        android:src="@drawable/baseline_add"
+        android:backgroundTint="@color/darkblue"
+        android:src="@drawable/add"
         android:contentDescription="@string/add_task_button_description"/>
 
 </RelativeLayout>

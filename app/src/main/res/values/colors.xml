@@ -2,7 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="primaryDark">#3700B3</color>
     <color name="darkblue">#013882</color>
-    <color name="lightblue">#97BEF3</color>
+    <color name="lightblue">#B6D1F4</color>
+    <color name="green">#FF669900</color>
+    <color name="newTaskBck">#CFE1F8</color>
+    <color name="update">#008CBA</color>
+    <color name="delete">#f44336</color>
 </resources>

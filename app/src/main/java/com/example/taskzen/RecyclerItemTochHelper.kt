@@ -22,6 +22,7 @@ class RecyclerItemTouchHelper(private val context: Context, private val adapter:
         val position = viewHolder.adapterPosition
         if (direction == ItemTouchHelper.LEFT) {
             val builder = AlertDialog.Builder(context)
+            builder.setMessage("Are You Sure?")
             builder.setPositiveButton("Confirm") { dialog, which ->
                 adapter.deleteItem(position)
             }
@@ -30,6 +31,8 @@ class RecyclerItemTouchHelper(private val context: Context, private val adapter:
             }
             val dialog = builder.create()
             dialog.show()
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(ContextCompat.getColor(context, R.color.delete))
+            dialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(ContextCompat.getColor(context, android.R.color.black))
         } else {
             adapter.editItem(position)
         }
@@ -46,10 +49,10 @@ class RecyclerItemTouchHelper(private val context: Context, private val adapter:
 
         if (dX > 0) {
             icon = ContextCompat.getDrawable(context, R.drawable.baseline_edit)!!
-            background = ContextCompat.getDrawable(context, R.color.primaryDark)!!
+            background = ContextCompat.getDrawable(context, R.color.update)!!
         } else {
-            icon = ContextCompat.getDrawable(context, R.drawable.baseline_edit)!!
-            background = ContextCompat.getDrawable(context, android.R.color.holo_red_light)!!
+            icon = ContextCompat.getDrawable(context, R.drawable.baseline_delete)!!
+            background = ContextCompat.getDrawable(context, R.color.delete)!!
         }
 
         val iconMargin = (itemView.height - icon.intrinsicHeight) / 2
